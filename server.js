@@ -3,7 +3,6 @@ let express = require("express");
 let app = express();
 let path = __dirname + '/views/';
 let nunjucks = require('nunjucks');
-let bootstrap = require("express-bootstrap-service");
 
 let index = require('./controllers/index.js');
 let err404 = require('./controllers/err404.js');
@@ -18,8 +17,6 @@ nunjucks.configure(app.get('views'), {
   watch: true, //Reload templates when they are changed (server side)
   express: app //Tells nunjucks we are using an express app called 'app'
 });
-
-app.use(bootstrap.serve);
 
 // Prints request type and what the user is accessing to the console
 let logRequest = (req, res, next) => {
