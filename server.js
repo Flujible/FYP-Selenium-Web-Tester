@@ -3,7 +3,10 @@ let express = require("express");
 let app = express();
 let path = __dirname + '/views/';
 let nunjucks = require('nunjucks');
-let hello = require('./controllers/hello');
+
+let index = require('./controllers/index.js');
+let err404 = require('./controllers/err404.js');
+let test = require('./controllers/test.js');
 
 //Set the port to 8080 if the environment variable doesnt specify
 let port = process.env.PORT || 8080;
@@ -21,34 +24,14 @@ let logRequest = (req, res, next) => {
   next();
 };
 
-//Returns the root of the site to the user
-app.get("/", logRequest, function(req, res) {
-  //sends the HTML file back to the user when requesting the page
-  res.render(path + "index.njk");
-});
+//Returns the requested page of the site to the user
+app.get("/", logRequest, index.show);
 
-app.get("/contact", logRequest, function(req, res) {
-  res.render(path + "contact.njk");
-});
+app.get('/test/:name', logRequest, test.retrieve);
+app.get('/test', logRequest, test.show);
 
-app.get('/test', logRequest, function(req, res) {
-  //Assigns URL parameters to variables
-  //URL parameters get stored in an object
-  let urlQueries = req.query;
-  let user_id = urlQueries.id;
-  let token = urlQueries.token;
-  let geo = urlQueries.geo;
-
-  //Returns the variables to be displayed on the page
-  // res.send(user_id + ' ' + token + ' ' + geo);
-  res.render(path + "test.njk");
-});
-
-app.get('/hello/:name', logRequest, hello.show);
-
-app.use("*", function(req, res) {
-  res.sendFile(path + "404.html");
-});
+//For any other page, show 404
+app.use("*", err404.show);
 
 app.listen(port, function() {
   console.log("Server started! Listening on " + port);

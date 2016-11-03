@@ -1,5 +1,5 @@
 let show = (req, res) => {
-  res.render('404.njk');
+  res.render('err404.njk');
 };
 
 module.exports = {
