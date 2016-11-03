@@ -27,10 +27,6 @@ app.get("/", logRequest, function(req, res) {
   res.render(path + "index.njk");
 });
 
-app.get("/about", logRequest, function(req, res) {
-  res.render(path + "about.njk");
-});
-
 app.get("/contact", logRequest, function(req, res) {
   res.render(path + "contact.njk");
 });
