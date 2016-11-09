@@ -28,9 +28,19 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-
     {% endfor %}
 
+		<form method="POST">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="name" name="username" class="form-control" id="name">
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input type="email" name="useremail" class="form-control" id="email">
+			</div>
+			<button type="submit" name="button" class="btn btn-default">Submit</button>
+		</form>
 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 			<!-- Include all compiled plugins (below), or include individual files as needed -->
