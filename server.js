@@ -42,6 +42,7 @@ app.get('/test', logRequest, test.show);
 //For any other page, show 404
 app.use("*", err404.show);
 
+//Run the server with confirmation message
 app.listen(port, function () {
 	console.log("Server started! Listening on " + port);
 });
