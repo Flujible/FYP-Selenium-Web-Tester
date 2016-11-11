@@ -25,6 +25,8 @@ let logRequest = (req, res, next) => {
 	next();
 };
 
+app.use(express.static('public'));
+
 //This allows us to use POST (crashes without) I think by converting the body into JSON so that index.sendForm can use it
 app.use(bodyParser.json());
 //This allows us to actually see the values, as without it we get 'undefined', but I dont know how or why it works
