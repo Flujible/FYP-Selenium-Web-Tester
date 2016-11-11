@@ -4,48 +4,84 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<title>FunkTest</title>
-
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/master.css">
 		<title>Selenium Web Tester</title>
 	</head>
-
 	<body>
-    {% for containerType in ['container', 'container-fluid'] %}
-    <div class="{{ containerType }}">
-			<div class="col-xs-4">
-				{% for i in range(1, 10) %}
-					<div class="row">
-						<p>{{ i }}</p>
-					</div>
 
-					{% if i % 3 == 0 %}
-					</div>
+		{# Navigation bar with links to pages and sign up/log in #}
+		{# I think this needs to go in the default.njk file #}
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand">Selenium Web Tester</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/test">Test</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			</ul>
+		</div>
 
-					{% if not loop.last %}
-						<div class="col-xs-4">
-						{% endif %}
-					{% endif %}
-				{% endfor %}
+		{# Jumbotron #}
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Welcome to Selenium Web Tester</h1>
+				<p>Selenium Web Tester is a web app which allows you to create selenium test scripts easily. </p>
+				<p>No need to learn or write any code.</p>
 			</div>
-    {% endfor %}
+		</div>
 
-		<form method="POST">
-			<div class="form-group">
-				<label for="name">Name:</label>
-				<input type="name" name="username" class="form-control" id="name">
+		<div class="container">
+			<div class="col-sm-2">
+				<img class="img-circle" src="https://avatars0.githubusercontent.com/u/9479802?v=3&u=1781fad2e36c5c9d6bec36990fa8a02c2bc88e73&s=140" alt="Twat" />
 			</div>
-			<div class="form-group">
-				<label for="email">Email:</label>
-				<input type="email" name="useremail" class="form-control" id="email">
+			<div class="col-sm-10">
+				<h3>Oops, there's me *blushes*</h3>
+				<p>
+					I created this site for my final year project at the University of Reading. I hope it gets me a good grade...
+				</p>
 			</div>
-			<button type="submit" name="button" class="btn btn-default">Submit</button>
-		</form>
-			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-			<!-- Include all compiled plugins (below), or include individual files as needed -->
-			<script src="js/bootstrap.min.js"></script>
-		</body>
-	</html>
+		</div>
+
+		{# Basic form which asks for name and email and submits using POST #}
+		<div class="container">
+			<form method="POST">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="name" name="username" class="form-control" id="name">
+				</div>
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" name="useremail" class="form-control" id="email">
+				</div>
+				<button type="submit" name="button" class="btn btn-default">Submit</button>
+			</form>
+		</div>
+		<div class="container">
+
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+			<h1>Some text to enable scrolling</h1>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

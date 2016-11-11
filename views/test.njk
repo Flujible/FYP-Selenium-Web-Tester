@@ -5,3 +5,22 @@
 		you
 	{% endif %}!
 </h1>
+
+{% for containerType in ['container', 'container-fluid'] %}
+<div class="{{ containerType }}">
+	<div class="col-xs-4">
+		{% for i in range(1, 10) %}
+			<div class="row">
+				<p>{{ i }}</p>
+			</div>
+
+			{% if i % 3 == 0 %}
+			</div>
+
+			{% if not loop.last %}
+				<div class="col-xs-4">
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endfor %}

@@ -1,3 +1,0 @@
-Create a controller called 'hello' which has a method 'show'.
-The method should take in a request and response as parameters and calls res.render.
-Export this controller so you can 'require' it and then call hello.show in server.js
