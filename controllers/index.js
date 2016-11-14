@@ -6,7 +6,7 @@ let sendForm = (req, res) => {
   let userName = req.body.username;
   let userEmail = req.body.useremail;
   console.log("Username: " + userName + " Email: " + userEmail);
-  res.render('index.njk');
+  res.render('formAccept.njk');
 };
 
 module.exports = {
