@@ -1,7 +1,3 @@
-body {
-  margin-top: 50px;
-}
-
 .navbar-default {
   background-color: green;
   color: green;
@@ -16,4 +12,8 @@ footer {
 
 #footer-nav {
   list-style-type: none;
+}
+
+#content {
+  padding-top: 50px
 }
