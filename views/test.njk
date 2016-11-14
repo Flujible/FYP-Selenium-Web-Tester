@@ -1,32 +1,80 @@
 {% extends "default.njk" %}
+{% set page = page or 'test' %}
+
+{% block pageTitle %}Test{% endblock %}
 
 {% block content %}
+<div class="container">
+	<h1>Hello
+		{% if name %}
+			{{name}}
+		{% else %}
+			you
+		{% endif %}!
+	</h1>
 
-<h1>Hello
-	{% if name %}
-		{{name}}
-	{% else %}
-		you
-	{% endif %}!
-</h1>
-
-{% for containerType in ['container', 'container-fluid'] %}
-<div class="{{ containerType }}">
-	<div class="col-xs-4">
-		{% for i in range(1, 10) %}
-			<div class="row">
-				<p>{{ i }}</p>
+	{# Table with text entry #}
+	<div class="container">
+		<form method="POST" class="form-horzontal">
+			<div id="urlID">
+				<label for="url">URL:</label>
+				<input type="url" name="url" class="form-control">
 			</div>
-
-			{% if i % 3 == 0 %}
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped table-highlighted" id="testMaker">
+					<thead>
+						<th>ID or Class</th>
+						<th>Element Identifier</th>
+						<th>Action</th>
+						<th>(if text entry) Text</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<select class="form-control" name="idOrClass">
+									<option>Class</option>
+									<option>ID</option>
+								</select>
+							</td>
+							<td><input type="text" class="form-control" name="elementID" placeholder="ID"/></td>
+							<td>
+								<select class="form-control" name="idOrClass">
+									<option>Click</option>
+									<option>Text Entry</option>
+								</select></td>
+							<td><input type="text" class="form-control" name="textEntry" placeholder="Enter text here"/></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-
-			{% if not loop.last %}
-				<div class="col-xs-4">
-				{% endif %}
-			{% endif %}
-		{% endfor %}
+			<button type="submit" name="button" class="btn btn-default">Submit</button>
+			<button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
+			<button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
+		</form>
 	</div>
-{% endfor %}
 
+<br>
+<br>
+<br>
+<br>
+	{% for containerType in ['container', 'container-fluid'] %}
+	<div class="{{ containerType }}">
+		<div class="col-xs-4">
+			{% for i in range(1, 10) %}
+				<div class="row">
+					<p>{{ i }}</p>
+				</div>
+
+				{% if i % 3 == 0 %}
+				</div>
+
+				{% if not loop.last %}
+					<div class="col-xs-4">
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% endfor %}
+
+</div>
 {% endblock %}

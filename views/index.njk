@@ -1,11 +1,9 @@
 {% extends "default.njk" %}
+{% set page = page or 'home' %}
 
-{% block pageTitle %}
-Home
-{% endblock %}
+{% block pageTitle %}Home{% endblock %}
 
 {% block content %}
-		{# Jumbotron #}
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Welcome to Selenium Web Tester</h1>
@@ -26,20 +24,6 @@ Home
 			</div>
 		</div>
 
-		{# Basic form which asks for name and email and submits using POST #}
-		<div class="container">
-			<form method="POST">
-				<div class="form-group">
-					<label for="name">Name:</label>
-					<input type="name" name="username" class="form-control" id="name">
-				</div>
-				<div class="form-group">
-					<label for="email">Email:</label>
-					<input type="email" name="useremail" class="form-control" id="email">
-				</div>
-				<button type="submit" name="button" class="btn btn-default">Submit</button>
-			</form>
-		</div>
 		<div class="container">
 
 			<h1>Some text to test my new branch</h1>
@@ -58,10 +42,5 @@ Home
 			<h1>Some text to enable scrolling</h1>
 			<h1>Some text to enable scrolling</h1>
 		</div>
-
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
 	</body>
 {% endblock %}
