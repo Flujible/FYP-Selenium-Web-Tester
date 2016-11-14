@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Selenium Web Tester | {% block pageTitle %}{% endblock %}</title>
+	</head>
+	<body>
+
+		{# Navigation bar with links to pages and sign up/log in #}
+		{# I think this needs to go in the default.njk file #}
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a href="/" class="navbar-brand">Selenium Web Tester</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/test">Test</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			</ul>
+		</div>
+
+    {% block content %}
+    {% endblock %}
+
+  </body>
+
+  <footer>
+      <div class="col-xs-12">
+        <ul id="footer-nav">
+          <li><a href="/" class="text-muted">Home</a></li>
+          <li><a href="/test" class="text-muted">Test</a></li>
+        </ul>
+      </div>
+      <p class="text-muted text-center">
+        Selenium Web Tester &copy George Bryant 2016
+      </p>
+  </footer>
+
+</html>
