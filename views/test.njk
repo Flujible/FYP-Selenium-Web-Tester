@@ -1,32 +1,50 @@
 {% extends "default.njk" %}
 
+{% block pageTitle %}Test{% endblock %}
+
 {% block content %}
+<div class="container">
+	<h1>Hello
+		{% if name %}
+			{{name}}
+		{% else %}
+			you
+		{% endif %}!
+	</h1>
 
-<h1>Hello
-	{% if name %}
-		{{name}}
-	{% else %}
-		you
-	{% endif %}!
-</h1>
-
-{% for containerType in ['container', 'container-fluid'] %}
-<div class="{{ containerType }}">
-	<div class="col-xs-4">
-		{% for i in range(1, 10) %}
-			<div class="row">
-				<p>{{ i }}</p>
+	{# Basic form which asks for name and email and submits using POST #}
+	<div class="container">
+		<form method="POST">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="name" name="username" class="form-control" id="name">
 			</div>
-
-			{% if i % 3 == 0 %}
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input type="email" name="useremail" class="form-control" id="email">
 			</div>
-
-			{% if not loop.last %}
-				<div class="col-xs-4">
-				{% endif %}
-			{% endif %}
-		{% endfor %}
+			<button type="submit" name="button" class="btn btn-default">Submit</button>
+		</form>
 	</div>
-{% endfor %}
 
+	{% for containerType in ['container', 'container-fluid'] %}
+	<div class="{{ containerType }}">
+		<div class="col-xs-4">
+			{% for i in range(1, 10) %}
+				<div class="row">
+					<p>{{ i }}</p>
+				</div>
+
+				{% if i % 3 == 0 %}
+				</div>
+
+				{% if not loop.last %}
+					<div class="col-xs-4">
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% endfor %}
+
+</div>
 {% endblock %}

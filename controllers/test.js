@@ -19,7 +19,15 @@ let retrieve = (req, res) => {
   res.render('test.njk', {name: req.params.name});
 }
 
+let sendForm = (req, res) => {
+  let userName = req.body.username;
+  let userEmail = req.body.useremail;
+  console.log("Username: " + userName + " Email: " + userEmail);
+  res.render('formAccept.njk');
+};
+
 module.exports = {
   show: show,
-  retrieve: retrieve
+  retrieve: retrieve,
+  sendForm: sendForm
 };
