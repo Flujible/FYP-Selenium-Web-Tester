@@ -13,21 +13,50 @@
 		{% endif %}!
 	</h1>
 
-	{# Basic form which asks for name and email and submits using POST #}
+	{# Table with text entry #}
 	<div class="container">
-		<form method="POST">
-			<div class="form-group">
-				<label for="name">Name:</label>
-				<input type="name" name="username" class="form-control" id="name">
+		<form method="POST" class="form-horzontal">
+			<div id="urlID">
+				<label for="url">URL:</label>
+				<input type="url" name="url" class="form-control">
 			</div>
-			<div class="form-group">
-				<label for="email">Email:</label>
-				<input type="email" name="useremail" class="form-control" id="email">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped table-highlighted" id="testMaker">
+					<thead>
+						<th>ID or Class</th>
+						<th>Element Identifier</th>
+						<th>Action</th>
+						<th>(if text entry) Text</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<select class="form-control" name="idOrClass">
+									<option>Class</option>
+									<option>ID</option>
+								</select>
+							</td>
+							<td><input type="text" class="form-control" name="elementID" placeholder="ID"/></td>
+							<td>
+								<select class="form-control" name="idOrClass">
+									<option>Click</option>
+									<option>Text Entry</option>
+								</select></td>
+							<td><input type="text" class="form-control" name="textEntry" placeholder="Enter text here"/></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<button type="submit" name="button" class="btn btn-default">Submit</button>
+			<button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
+			<button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
 		</form>
 	</div>
 
+<br>
+<br>
+<br>
+<br>
 	{% for containerType in ['container', 'container-fluid'] %}
 	<div class="{{ containerType }}">
 		<div class="col-xs-4">
