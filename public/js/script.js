@@ -24,7 +24,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $("#dltRowBtn").click(function(e){
     e.preventDefault();
-    if ($("table#testMaker tr").length > 1) {
+    if ($("table#testMaker tr").length > 2) {
       $("table#testMaker tr:last").remove();
     }
   });

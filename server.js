@@ -37,7 +37,7 @@ app.get("/", logRequest, index.show);
 
 app.get('/test/:name', logRequest, test.retrieve);
 app.get('/test', logRequest, test.show);
-app.post("/test", logRequest, test.sendForm);
+app.post("/test", logRequest, test.createTest);
 
 //For any other page, show 404
 app.use("*", err404.show);

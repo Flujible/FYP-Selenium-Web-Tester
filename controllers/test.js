@@ -26,8 +26,33 @@ let sendForm = (req, res) => {
   res.render('formAccept.njk');
 };
 
+let createTest = (req, res) => {
+  let test = {
+    url: req.body.url,
+    idType: req.body.idOrClass,
+    id: req.body.elementID,
+    action: req.body.act,
+    text: req.body.textEnt
+  }
+  console.log(test);
+
+  // let url = req.body.url;
+  // let idType = req.body.idOrClass;
+  // let id = req.body.elementID;
+  // let action = req.body.act;
+  // let text = req.body.textEnt;
+  //
+  // console.log("URL: " + url + "\n" +
+  //             "ID Type: " + idType + "\n" +
+  //             "ID: " + id + "\n" +
+  //             "Action: " + action + "\n" +
+  //             "Text: " + text + "\n");
+  res.render('formAccept.njk');
+};
+
 module.exports = {
   show: show,
   retrieve: retrieve,
-  sendForm: sendForm
+  sendForm: sendForm,
+  createTest: createTest
 };
