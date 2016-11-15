@@ -14,6 +14,7 @@ $(document).ready(function(){
             "<select class='form-control' name='idOrClass'>",
               "<option>Click</option>",
               "<option>Text Entry</option>",
+              "<option>Assert</option>",
             "</select></td>",
           "<td><input type='text' class='form-control' name='textEntry' placeholder='Enter text here'/></td>",
         "</tr>",

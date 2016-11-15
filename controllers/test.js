@@ -32,7 +32,7 @@ let createTest = (req, res) => {
     idType: req.body.idOrClass,
     id: req.body.elementID,
     action: req.body.act,
-    text: req.body.textEnt
+    value: req.body.textEnt
   }
   console.log(test);
 
