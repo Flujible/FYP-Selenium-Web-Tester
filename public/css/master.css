@@ -20,6 +20,10 @@ a {
   color: #f5fffa;
 }
 
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0;
+}
+
 .active {
   background-color: #f9fff9;
   color: #333;
