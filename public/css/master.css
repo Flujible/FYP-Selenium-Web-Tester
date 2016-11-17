@@ -12,6 +12,15 @@ a {
   color: #f5fffa;
 }
 
+footer {
+  background-color: #e2f7ff;
+}
+
+ul.nav a:hover {
+  background-color: #f9fff9;
+  color: #333;
+}
+
 .navbar-custom {
   background-color: #008000;
 }
@@ -33,13 +42,33 @@ a {
   color: #333;
 }
 
-ul.nav a:hover {
-  background-color: #f9fff9;
-  color: #333;
+.jumbotron {
+  background-color: #e2f7ff;
+  border-bottom: solid;
+  border-width: 2px;
+  border-color: #999;
 }
+
+.img-circle {
+  width: 100%;
+  max-width: 160px;
+}
+
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+   background-color: #eff7f9;
+ }
+
+ .table-striped > tbody > tr:nth-child(odd) > td,
+ .table-striped > tbody > tr:nth-child(odd) > th {
+   background-color: #f9fff9;
+ }
 
 #footer-nav {
   list-style-type: none;
+  text-align: center;
+  text-decoration: underline;
+  padding-left: 0px;
 }
 
 #content {
