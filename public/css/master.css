@@ -64,6 +64,11 @@ ul.nav a:hover {
    background-color: #f9fff9;
  }
 
+.side-by-side {
+  max-width: 500px;
+  max-height: 500px;
+}
+
 #footer-nav {
   list-style-type: none;
   text-align: center;

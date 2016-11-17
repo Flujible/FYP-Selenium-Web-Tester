@@ -5,15 +5,33 @@
 
 {% block content %}
 <div class="container">
-	<h1>Hello
-		{% if name %}
-			{{name}}
-		{% else %}
-			you
-		{% endif %}!
-	</h1>
-
-	{# Table with text entry #}
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Hello
+				{% if name %}
+					{{name}}
+				{% else %}
+					you
+				{% endif %}!
+			</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+			<p>
+				Nam congue ullamcorper libero, nec facilisis nunc aliquam id. Suspendisse
+				sed interdum tellus. Aenean non accumsan velit. Etiam et ex vitae ipsum
+				tincidunt fermentum convallis ac arcu. Donec pretium ut quam nec euismod.
+				Quisque mollis egestas augue, a dictum enim rhoncus at. Mauris suscipit
+				tincidunt vulputate. Proin sit amet risus a nulla porttitor volutpat.
+				Duis eu purus non lectus posuere ornare. Aenean efficitur, justo sit
+				amet tincidunt porttitor, nisl dui tincidunt nulla, ac suscipit ligula
+				velit vel erat. Vivamus volutpat felis velit, quis commodo augue dapibus
+				nec.
+			</p>
+		</div>
+	</div>
 	<div class="container">
 		<form method="POST" class="form-horzontal">
 			<div id="urlID">
@@ -29,6 +47,7 @@
 						<th>Value</th>
 					</thead>
 					<tbody>
+						{% for number in [1, 2, 3]%}
 						<tr>
 							<td>
 								<select class="form-control" name="idOrClass">
@@ -45,6 +64,7 @@
 								</select></td>
 							<td><input type="text" class="form-control" name="textEnt" placeholder="Enter text here"/></td>
 						</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 			</div>
@@ -54,10 +74,7 @@
 		</form>
 	</div>
 
-<br>
-<br>
-<br>
-<br>
+	<h3>Here's two grids of numbers to demo what nunjucks can do!</h3>
 	{% for containerType in ['container', 'container-fluid'] %}
 	<div class="{{ containerType }}">
 		<div class="col-xs-4">
@@ -77,5 +94,5 @@
 		</div>
 	{% endfor %}
 
-</div>
+	</div>
 {% endblock %}
