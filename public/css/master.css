@@ -1,13 +1,37 @@
-.navbar-default {
-  background-color: green;
-  color: green;
-  background-image: none;
-}
-
 footer {
   padding: 10px;
   margin-top:20px;
   background-color: #f2f2f2;
+}
+
+body {
+  background-color: #f9fff9;
+}
+
+a {
+  color: #f5fffa;
+}
+
+.navbar-custom {
+  background-color: #008000;
+}
+
+.navbar-brand, .navbar-brand:hover {
+  color: #f5fffa;
+}
+
+.active {
+  background-color: #f9fff9;
+  color: #333;
+}
+
+.active a {
+  color: #333;
+}
+
+ul.nav a:hover {
+  background-color: #f9fff9;
+  color: #333;
 }
 
 #footer-nav {
@@ -15,7 +39,7 @@ footer {
 }
 
 #content {
-  padding-top: 50px
+  padding-top: 50px;
 }
 
 #urlID {
