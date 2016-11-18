@@ -1,5 +1,5 @@
 {
-  "name": "simple-site",
+  "name": "FYP-Selenium-Web-Tester",
   "version": "0.0.1",
   "scripts": {
     "start": "nodemon server.js",
