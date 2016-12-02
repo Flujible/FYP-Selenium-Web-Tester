@@ -2,7 +2,17 @@
 
 {% block content %}
 
-<h1>Thanks for submitting the form!</h1>
+<h1>Form successfully submitted!</h1>
 <h2><a href="/test">Click here to go back</a></h2>
+
+{% if err %}
+  <h2>ERROR:</h2>
+  <pre>
+    <code>{{ err | dump }}</code>
+  </pre>
+{% else %}
+  {# <h2>RESULT: OK</h2> #}
+{% endif %}
+
 
 {% endblock %}

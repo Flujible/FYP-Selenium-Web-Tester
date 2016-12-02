@@ -4,7 +4,6 @@ let app = express();
 let path = __dirname + '/views/';
 let nunjucks = require('nunjucks');
 let bodyParser = require('body-parser');
-let redisClient = require('redis').createClient(process.env.REDIS_URL);
 
 let index = require('./controllers/index.js');
 let err404 = require('./controllers/err404.js');
