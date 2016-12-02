@@ -17,8 +17,8 @@
 				<a href="/" class="navbar-brand">Selenium Web Tester</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class='{{ "active" if page === "home" }}'><a href="/">Home</a></li>
-				<li class='{{ "active" if page === "test" }}'><a href="/test">Test</a></li>
+				<li class='{{ "active" if page === "home" else "nav-item"}}'><a href="/">Home</a></li>
+				<li class='{{ "active" if page === "test" else "nav-item"}}'><a href="/test">Test</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>

@@ -9,16 +9,27 @@ body {
 }
 
 a {
-  color: #f5fffa;
+  color: #008000;
+}
+
+a:hover {
+  color: #008000;
 }
 
 footer {
-  background-color: #e2f7ff;
+  background-color: #ebfffc;
+  border-top: solid;
+  border-width: 2px;
+  border-color: #999;
 }
 
 ul.nav a:hover {
   background-color: #f9fff9;
   color: #333;
+}
+
+.nav-item a {
+  color: #f5fffa;
 }
 
 .navbar-custom {
@@ -43,7 +54,7 @@ ul.nav a:hover {
 }
 
 .jumbotron {
-  background-color: #e2f7ff;
+  background-color: #ebfffc;
   border-bottom: solid;
   border-width: 2px;
   border-color: #999;
