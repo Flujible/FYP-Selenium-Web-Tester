@@ -32,12 +32,25 @@ let createTest = (req, res) => {
 
   let data = {
     url: req.body.url,
-    idOrClass: req.body.idOrClass.join(','),
-    elementID: req.body.elementID.join(','),
-    action: req.body.act.join(','),
-    value: req.body.textEnt.join(','),
+    steps: [],
     done: false
   };
+
+  let input = req.body;
+  let rows = input.idOrClass.length;
+
+  for (var i = 0; i < rows; i++) {
+    data.steps.push({
+      id: input.idOrClass[i],
+      element: input.elementID[i],
+      action: input.act[i],
+      value: input.textEnt[i],
+    });
+  }
+
+  data.steps = JSON.stringify(data.steps);
+
+  console.log(data);
 
   redisClient.hmset(key, data, (err, result) => {
     console.log('ERR: ', err);
