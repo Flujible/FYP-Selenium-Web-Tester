@@ -9,6 +9,10 @@ let index = require('./controllers/index.js');
 let err404 = require('./controllers/err404.js');
 let test = require('./controllers/test.js');
 
+require('dotenv').load({
+	silent: true
+});
+
 //Set the port to 8080 if the environment variable doesnt specify
 let port = process.env.PORT || 8080;
 
