@@ -40,6 +40,7 @@ let createTest = (req, res) => {
   let rows = input.idOrClass.length;
 
   for (var i = 0; i < rows; i++) {
+    input.act[i] = input.act[i].replace(/\s+/g, '');
     data.steps.push({
       id: input.idOrClass[i],
       element: input.elementID[i],
