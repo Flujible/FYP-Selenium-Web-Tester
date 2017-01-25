@@ -30,7 +30,7 @@ let createTest = (req, res) => {
   let data = {
     url: req.body.url,
     steps: [],
-    done: false
+    status: "pending"
   };
 
   let input = req.body;
