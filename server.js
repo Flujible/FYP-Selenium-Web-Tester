@@ -41,9 +41,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Returns the requested page of the site to the user
 app.get("/", logRequest, index.show);
 
+app.get("/results/", logRequest, results.retrieve);
+app.get("/results/:id", logRequest, results.retrieve);
+
 app.get('/test/:name', logRequest, test.retrieve);
 app.get('/test', logRequest, test.show);
 app.post("/test", logRequest, test.createTest);
+
+app.get('/api/results', logRequest, api.index);
+app.get('/api/results/:guid', logRequest, api.show);
 
 //For any other page, show 404
 app.use("*", err404.show);

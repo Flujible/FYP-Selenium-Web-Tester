@@ -54,7 +54,7 @@ let createTest = (req, res) => {
     console.log('ERR: ', err);
     console.log('RES: ', result);
 
-    res.render('formAccept.njk', { err });
+    res.redirect(`/results?id=${newGuid}`);
 
     // DEBUG
     redisClient.hgetall(key, (_, object) => console.log(object));
