@@ -5,94 +5,94 @@
 
 {% block content %}
 <div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<h1>Hello
-				{% if name %}
-					{{name}}
-				{% else %}
-					you
-				{% endif %}!
-			</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-			<p>
-				Nam congue ullamcorper libero, nec facilisis nunc aliquam id. Suspendisse
-				sed interdum tellus. Aenean non accumsan velit. Etiam et ex vitae ipsum
-				tincidunt fermentum convallis ac arcu. Donec pretium ut quam nec euismod.
-				Quisque mollis egestas augue, a dictum enim rhoncus at. Mauris suscipit
-				tincidunt vulputate. Proin sit amet risus a nulla porttitor volutpat.
-				Duis eu purus non lectus posuere ornare. Aenean efficitur, justo sit
-				amet tincidunt porttitor, nisl dui tincidunt nulla, ac suscipit ligula
-				velit vel erat. Vivamus volutpat felis velit, quis commodo augue dapibus
-				nec. CHEAT:  === Enter
-			</p>
-		</div>
-	</div>
-	<div class="container">
-		<form method="POST" class="form-horzontal">
-			<div id="urlID">
-				<label for="url">URL:</label>
-				<input type="url" name="url" class="form-control" value="https://">
-			</div>
-			<div class="table-responsive">
-				<table class="table table-bordered table-striped" id="testMaker">
-					<thead>
-						<th>ID or Class</th>
-						<th>Element Identifier</th>
-						<th>Action</th>
-						<th>Value</th>
-					</thead>
-					<tbody>
-						{% for number in [1, 2, 3]%}
-						<tr>
-							<td>
-								<select class="form-control" name="idOrClass">
-									<option>Class</option>
-									<option>ID</option>
-								</select>
-							</td>
-							<td><input type="text" class="form-control" name="elementID" placeholder="ID"/></td>
-							<td>
-								<select class="form-control" name="act">
-									<option>Click</option>
-									<option>Text Entry</option>
-									<option>Assert</option>
-								</select></td>
-							<td><input type="text" class="form-control" name="textEnt" placeholder="Enter text here"/></td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			<button type="submit" name="button" class="btn btn-default">Submit</button>
-			<button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
-			<button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
-		</form>
-	</div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Hello
+        {% if name %}
+          {{name}}
+        {% else %}
+          you
+        {% endif %}!
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+      <p>
+        Nam congue ullamcorper libero, nec facilisis nunc aliquam id. Suspendisse
+        sed interdum tellus. Aenean non accumsan velit. Etiam et ex vitae ipsum
+        tincidunt fermentum convallis ac arcu. Donec pretium ut quam nec euismod.
+        Quisque mollis egestas augue, a dictum enim rhoncus at. Mauris suscipit
+        tincidunt vulputate. Proin sit amet risus a nulla porttitor volutpat.
+        Duis eu purus non lectus posuere ornare. Aenean efficitur, justo sit
+        amet tincidunt porttitor, nisl dui tincidunt nulla, ac suscipit ligula
+        velit vel erat. Vivamus volutpat felis velit, quis commodo augue dapibus
+        nec. CHEAT:  === Enter
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <form method="POST" class="form-horzontal">
+      <div id="urlID">
+        <label for="url">URL:</label>
+        <input type="url" name="url" class="form-control" value="https://xes.io/contact/">
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="testMaker">
+          <thead>
+            <th>ID or Class</th>
+            <th>Element Identifier</th>
+            <th>Action</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            {% for number in [1, 2, 3]%}
+            <tr>
+              <td>
+                <select class="form-control" name="idOrClass">
+                  <option>ID</option>
+                  <option>Class</option>
+                </select>
+              </td>
+              <td><input type="text" class="form-control" name="elementID" placeholder="ID" value="name"/></td>
+              <td>
+                <select class="form-control" name="act">
+                  <option>Text Entry</option>
+                  <option>Click</option>
+                  <option>Assert</option>
+                </select></td>
+              <td><input type="text" class="form-control" name="textEnt" placeholder="Enter text here" value="George"/></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <button type="submit" name="button" class="btn btn-default">Submit</button>
+      <button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
+      <button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
+    </form>
+  </div>
 
-	<h3>Here's two grids of numbers to demo what nunjucks can do!</h3>
-	{% for containerType in ['container', 'container-fluid'] %}
-	<div class="{{ containerType }}">
-		<div class="col-xs-4">
-			{% for i in range(1, 10) %}
-				<div class="row">
-					<p>{{ i }}</p>
-				</div>
+  <h3>Here's two grids of numbers to demo what nunjucks can do!</h3>
+  {% for containerType in ['container', 'container-fluid'] %}
+  <div class="{{ containerType }}">
+    <div class="col-xs-4">
+      {% for i in range(1, 10) %}
+        <div class="row">
+          <p>{{ i }}</p>
+        </div>
 
-				{% if i % 3 == 0 %}
-				</div>
+        {% if i % 3 == 0 %}
+        </div>
 
-				{% if not loop.last %}
-					<div class="col-xs-4">
-					{% endif %}
-				{% endif %}
-			{% endfor %}
-		</div>
-	{% endfor %}
+        {% if not loop.last %}
+          <div class="col-xs-4">
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endfor %}
 
-	</div>
+  </div>
 {% endblock %}

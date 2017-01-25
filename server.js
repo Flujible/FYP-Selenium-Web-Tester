@@ -5,9 +5,11 @@ let path = __dirname + '/views/';
 let nunjucks = require('nunjucks');
 let bodyParser = require('body-parser');
 
-let index = require('./controllers/index.js');
-let err404 = require('./controllers/err404.js');
-let test = require('./controllers/test.js');
+let index = require('./controllers/index');
+let err404 = require('./controllers/err404');
+let test = require('./controllers/test');
+let results = require('./controllers/results');
+const api = require('./controllers/api');
 
 require('dotenv').load({
 	silent: true
