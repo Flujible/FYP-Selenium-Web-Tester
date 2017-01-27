@@ -1,4 +1,5 @@
 const redisClient = require('redis').createClient(process.env.REDIS_URL);
+const parseString = require('xml2js').parseString;
 
 module.exports = {
   //Show all keys with their status in an array of objects
@@ -27,7 +28,9 @@ module.exports = {
     redisClient.hget(guid, 'result', function (err, result) {
       if (err) {return res.error(err);
       } else {
-        res.send({guid, result});
+        parseString(result, (err, data) => {
+          res.send({guid, data: data.testsuites.testsuite});
+        })
       }
     });
   }
