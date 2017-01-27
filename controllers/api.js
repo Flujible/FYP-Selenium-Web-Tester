@@ -24,7 +24,7 @@ module.exports = {
     });
   },
   show: (req, res) => {
-    guid = req.params.guid;
+    let guid = req.params.guid;
     redisClient.hget(guid, 'result', function (err, result) {
       if (err) {return res.error(err);
       } else {
