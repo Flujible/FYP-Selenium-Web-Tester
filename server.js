@@ -41,8 +41,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Returns the requested page of the site to the user
 app.get("/", logRequest, index.show);
 
-app.get("/results/", logRequest, results.retrieve);
-app.get("/results/:id", logRequest, results.retrieve);
+app.get("/results/", logRequest, results.index);
+app.get("/results/:id", logRequest, results.show);
 
 app.get('/test/:name', logRequest, test.retrieve);
 app.get('/test', logRequest, test.show);

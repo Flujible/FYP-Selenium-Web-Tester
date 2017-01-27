@@ -1,0 +1,18 @@
+{% extends "default.njk" %}
+{% set page = page or 'results' %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Results - Show.njk</h1>
+  <h3>Your test ID is {{id}}</h3>
+
+  <table class="table table-bordered table-striped" id="results">
+    <tr>
+      <th>Test ID</th>
+      <th>Result</th>
+    </tr>
+  </table></div>
+
+
+{% endblock %}

@@ -1,12 +1,15 @@
-let retrieve = (req, res) => {
+let show = (req, res) => {
+  res.render('results/show.njk', {id: req.params.id});
+}
 
-  res.render('results.njk', {id: req.query.id, result: "/api/results/req.query.id"});
-
+let index = (req, res) => {
+  res.render('results/index.njk');
+}
 
 // in the browser set a timeout so every 5 seconds the api gets queried to show the results
 
-};
 
 module.exports = {
-  retrieve: retrieve
+  index: index,
+  show: show
 };
