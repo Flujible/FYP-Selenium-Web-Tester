@@ -59,30 +59,6 @@ let createTest = (req, res) => {
     // DEBUG
     redisClient.hgetall(key, (_, object) => console.log(object));
   });
-
-  // let test = {
-  //   guid: newGuid.value,
-  //   url: req.body.url,
-  //   idType: req.body.idOrClass,
-  //   id: req.body.elementID,
-  //   action: req.body.act,
-  //   value: req.body.textEnt,
-  //   done: false
-  // }
-  // redisClient.hmset(newGuid.value.toString(),
-  //                   "url", req.body.url.toString(),
-  //                   "idOrClass", req.body.idOrClass.toString(),
-  //                   "elementID", req.body.elementID.toString(),
-  //                   "action", req.body.act.toString(),
-  //                   "value", req.body.textEnt.toString(),
-  //                   "done", false
-  //                   )
-  // console.log(test);
-  // console.log("----------------------------------------------");
-  // redisClient.hgetall(newGuid.value.toString(), function(err, object) {
-  //   console.log(object);
-  // });
-  // res.render('formAccept.njk');
 };
 
 module.exports = {
