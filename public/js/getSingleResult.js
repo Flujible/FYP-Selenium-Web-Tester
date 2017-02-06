@@ -1,24 +1,26 @@
 $(document).ready(function(){
-	if ($('#results').length) {
-		$.ajax({
-			type: "GET",
-      url: "api/results/3da95ac6-7f3d-335e-f7e0-5f5f5215cb50",
-			dataType: "json",
-			success: console.log.bind(console)
-      // function (data) {
-			// 	data.forEach(test => {
-			// 		$("table#results").append([
-	    //       '<tr>',
-	    //         '<td>',
-	    //           test.key,
-	    //         '</td>',
-			// 				'<td>',
-	    //           test.result,
-	    //         '</td>',
-	    //       '</tr>',
-	    //   ].join(''));
-			// 	})
-			// }
-		});
-	}
+    $.ajax({
+      type: "GET",
+      url: "/api/results/" + $('table#showResults').data("testid"),
+      dataType: "json",
+      success: function (data) {
+        console.log();
+        $("table#showResults").append([
+          '<tr>',
+            '<td>',
+              data.guid,
+            '</td>',
+            '<td>',
+            '<pre>Assertions successful: ', JSON.stringify(data.data[0].$.tests, null, 4), '</pre>',
+              '<pre>Skipped: ', JSON.stringify(data.data[0].$.skipped, null, 4), '</pre>',
+              '<pre>Errors: ', JSON.stringify(data.data[0].$.errors, null, 4), '</pre>',
+              '<pre>Failures: ', JSON.stringify(data.data[0].$.failures, null, 4), '</pre>',
+              '<pre>Time to execute: ', JSON.stringify(data.data[0].$.time, null, 4), '</pre>',
+              '<pre>Time executed: ', JSON.stringify(data.data[0].$.timestamp, null, 4), '</pre>',
+            '</td>',
+          '</tr>',
+        ].join(''));
+      },
+      error: console.error.bind(console)
+    });
 });
