@@ -17,10 +17,10 @@ let show = (req, res) => {
 
 let retrieve = (req, res) => {
   res.render('test.njk', {name: req.params.name});
-}
+};
 
 let createTest = (req, res) => {
-  let newGuid = guid.create()
+  let newGuid = guid.create();
   while (!guid.isGuid(newGuid)) {
     newGuid = guid.create();
   }
