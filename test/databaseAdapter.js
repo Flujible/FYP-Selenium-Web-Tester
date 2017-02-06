@@ -1,8 +1,9 @@
-const assert = require('chai').assert;
+const chai = require('chai');
+const assert = chai.assert;
 const chaiAsPromised = require("chai-as-promised");
 const guid = require("guid");
 const DatabaseAdapter = require('../lib/DatabaseAdapter');
-const redisClient = require("mock-redis").createClient;
+const redisClient = require("redis-mock").createClient;
 const db = new DatabaseAdapter(redisClient);
 
 /*
@@ -21,7 +22,7 @@ const db = new DatabaseAdapter(redisClient);
 
 chai.use(chaiAsPromised);
 
-describe("database.js", () => {
+describe("DatabaseAdapter.js", () => {
   describe(".getKey()", () => {
 
     it("rejects with no input", () => {
@@ -46,12 +47,12 @@ describe("database.js", () => {
           value: "Hello",
         }],
         status: "pending"
-      }
+      };
       //Crate a new DB entry with the above key and data
       db.createEntry(newGuid, newData);
 
       //Obtain the promise that getKey should provide
-      let validEntry = db.getKey(newGuid)
+      let validEntry = db.getKey(newGuid);
 
       //Make assertions on the returned promise
       let assertions = [];
@@ -73,31 +74,67 @@ describe("database.js", () => {
 
     });
 
-    it("rejects if given a GUID that is not in the db");
-    it("rejects if the first parameter is not a GUID");
+    it("rejects if given a GUID that is not in the db", (done) => {
+      let newGuid = guid.create();
+
+      redisClient.keys("*", (err, keys) => {
+        if(err) console.error(err);
+        keys.forEach(key => {
+            if(key === newGuid) {
+              newGuid = guid.create();
+            }
+        });
+        redisClient.getKey(newGuid, () => {
+          return expect(promise).to.be.rejected;
+        });
+      });
+    });
   });
   describe(".getAllKeys()", () => {
-    it("returns a list of all keys in the db");
+    it("returns a list of all keys in the db", () => {
+      let trueList = redisClient.keys("*", () => {
+        let testList = db.getAllKeys();
+        return assert.becomes(testList, trueList);
+      });
+    });
   });
-  descrie(".createEntry()", () => {
-    it("creates a new database entry when given a string, key, and an object, data");
-    it("rejects with no input");
-    it("rejects when the key is not a valid GUID");
-    it("rejects if the GUID is already in use");
-    it("rejects when the data is not an object");
-    it("rejects when the data does not contain url, steps, and status parameters");
+  describe(".set()", () => {
+    it("Updates a key:value pair with when given a key and a value ", () => {
+      let key = guid.newGUID();
+      let data = {"Key": "Value",
+                  "AnotherKey": "AnotherValue!"};
+      let creation = db.createEntry(key, data);
+      return assert.isFulfilled(creation);
+    });
+    it("rejects with no input", () => {
+      let reject = db.createEntry();
+      return assert.isRejected(reject);
+    });
+    it("rejects when the data is not valid", () => {
+      notValid1 = "Hello!";
+      notValid2 = 1234567;
+      notValid3 = ["hi", 324];
+      notValid4 = {"url": "valid",
+                   "steps": "valid",
+                   "NotStatus": "Object needs a 'status' parameter to be valid"};
+
+      reject1 = db.createEntry(notValid1);
+      reject2 = db.createEntry(notValid2);
+      reject3 = db.createEntry(notValid3);
+      reject3 = db.createEntry(notValid4);
+
+      let assertions = [];
+      assertions.push(assert.isRejected(reject1));
+      assertions.push(assert.isRejected(reject2));
+      assertions.push(assert.isRejected(reject3));
+      assertions.push(assert.isRejected(reject4));
+      return Promise.all(assetions);
+    });
   });
-  describe(".updateKey()", () => {
-    it("updates the specified key with the specified data");
-    it("rejects with no input");
-    it("rejects if the key is not a valid GUID");
-    it("rejects if the key is not in the db");
-    it("rejects if the data is not an object");
-  })
   describe(".removeKey()", () => {
     it("removes the specified key from the db");
     it("rejects with no input");
     it("rejects with a non-valid GUID");
     it("rejects with a GUID that is not in the db");
-  })
-})
+  });
+});
