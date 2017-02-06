@@ -1,37 +1,48 @@
 const redisClient = require('redis').createClient(process.env.REDIS_URL);
 const parseString = require('xml2js').parseString;
 
+let getKey = (guid) => {
+  return new Promise(function(resolve, reject) {
+    redisClient.hget(guid, 'result', function (err, result) {
+      console.log(":: Redis accessed");
+      if (err) {
+        console.log(":: About to reject");
+        return reject(err);
+      } else {
+        parseString(result, (err, data) => {
+          if (err) console.error(err);
+          return resolve(data);
+        });
+      }
+    });
+  });
+};
+
 module.exports = {
   //Show all keys with their status in an array of objects
-  index: (req, res) => {
+  index: (_, res) => {
     redisClient.keys('*', function (err, keys) {
-      if (err) {
-        return res.error(err);
-      } else {
-        let promises = [];
-        keys.forEach(key => {
-          console.log(key);
-          promises.push(new Promise(resolve => {
-            redisClient.hget(key, 'status', (err, status) => {
-              resolve(err || { key, status });
-            });
-          }));
-        });
+      if (err) return res.error(err);
+      let promises = [];
+      keys.forEach(key => {
+        console.log(key);
+        promises.push(new Promise(resolve => {
+          redisClient.hget(key, 'status', (err, status) => {
+            resolve(err || { key, status });
+          });
+        }));
+      });
         Promise.all(promises).then(results => {
           res.send(results);
         });
       }
-    });
+    );
   },
+  //Show a specific key and its data
   show: (req, res) => {
     let guid = req.params.guid;
-    redisClient.hget(guid, 'result', function (err, result) {
-      if (err) {return res.error(err);
-      } else {
-        parseString(result, (err, data) => {
-          res.send({guid, data: data.testsuites.testsuite});
-        })
-      }
+    getKey(guid).then(function(data) {
+      res.send({guid, data: data.testsuites.testsuite});
     });
   }
-}
+};
