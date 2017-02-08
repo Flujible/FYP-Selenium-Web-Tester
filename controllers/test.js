@@ -30,7 +30,9 @@ let createTest = (req, res) => {
   let data = {
     url: req.body.url,
     steps: [],
-    status: "pending"
+    status: "pending",
+    //Returns the number of milliseconds since 1 Jan 1970 00:00:00 UTC
+    timestamp: Date.now()
   };
 
   let input = req.body;
