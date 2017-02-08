@@ -28,6 +28,11 @@ ul.nav a:hover {
   color: #333;
 }
 
+.status {
+  text-transform: capitalize;
+  text-align: center;
+}
+
 .nav-item a {
   color: #f5fffa;
 }
