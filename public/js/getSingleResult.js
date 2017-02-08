@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  if($('table#showResults').length) {
     $.ajax({
       type: "GET",
       url: "/api/results/" + $('table#showResults').data("testid"),
@@ -23,4 +24,5 @@ $(document).ready(function(){
       },
       error: console.error.bind(console)
     });
+  }
 });
