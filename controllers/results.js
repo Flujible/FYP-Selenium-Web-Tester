@@ -3,7 +3,7 @@ let show = (req, res) => {
 };
 
 let index = (req, res) => {
-  res.render('results/index.njk');
+  res.render('results/index.njk', {id: req.query.id});
 };
 
 // in the browser set a timeout so every 5 seconds the api gets queried to show the results
