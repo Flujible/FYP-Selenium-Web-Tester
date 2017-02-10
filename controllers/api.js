@@ -39,8 +39,11 @@ module.exports = {
   //Show a specific key and its data
   show: (req, res) => {
     let guid = req.params.guid;
-    getKey(guid).then(function(data) {
-      res.send({guid, data: data.testsuites.testsuite});
+    getResult(guid).then((data) => {
+      redisClient.hget(guid, 'steps', function (err, result) {
+        if (err) return reject(err);
+        res.send({guid, data: data.testsuites.testsuite, steps: result});
+      });
     });
   }
 };

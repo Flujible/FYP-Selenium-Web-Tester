@@ -3,16 +3,18 @@
 
 {% block content %}
 
-<div class="container">
-  <h1>Results</h1>
-  <h3>Your test ID is {{id}}</h3>
+<div id="errorPageContainer" class="container" data-testID='{{id}}'>
+  <h1>Results for {{id}}</h1>
 
-  <table class="table table-bordered table-striped" id="showResults" data-testID='{{id}}'>
-    <tr>
-      <th>Test ID</th>
-      <th>Result</th>
-    </tr>
-  </table></div>
+  <div class="container" id="testResults" data-testID='{{id}}'>
+  <h3>Test results</h3>
+  </div>
 
+
+  <div class="container" id="testSteps" data-testID='{{id}}'>
+  <h3>Test steps</h3>
+  </div>
+
+</div>
 
 {% endblock %}
