@@ -38,15 +38,25 @@ let createTest = (req, res) => {
   let input = req.body;
   let rows = input.idOrClass.length;
 
-  for (var i = 0; i < rows; i++) {
-    input.act[i] = input.act[i].replace(/\s+/g, '');
+  if (rows <= 2) {
+    input.act = input.act.replace(/\s+/g, '');
     data.steps.push({
-      id: input.idOrClass[i],
-      element: input.elementID[i],
-      action: input.act[i],
-      value: input.textEnt[i],
+      id: input.idOrClass,
+      element: input.elementID,
+      action: input.act,
+      value: input.textEnt,
     });
-  }
+  } else {
+    for (var i = 0; i < rows; i++) {
+      input.act[i] = input.act[i].replace(/\s+/g, '');
+      data.steps.push({
+        id: input.idOrClass[i],
+        element: input.elementID[i],
+        action: input.act[i],
+        value: input.textEnt[i],
+      });
+    }
+}
 
   data.steps = JSON.stringify(data.steps);
 
