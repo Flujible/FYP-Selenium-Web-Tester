@@ -23,8 +23,7 @@ const db = new DatabaseAdapter(redisClient);
 chai.use(chaiAsPromised);
 
 describe("DatabaseAdapter.js", () => {
-  describe(".getKey()", () => {
-
+  describe(".getKey(guid)", () => {
     it("rejects with no input", () => {
       blankInput = db.getKey();
       return assert.isRejected(blankInput, /No key was provided/);
@@ -32,7 +31,7 @@ describe("DatabaseAdapter.js", () => {
 
     it("returns the array of key:value pairs when given a GUID that is present in the db", () => {
       //Create a new ID and data
-      newGuid = guid.create();
+      let newGuid = guid.create();
       newData = {
         url: "http://www.example.com",
         steps: [{
@@ -49,7 +48,7 @@ describe("DatabaseAdapter.js", () => {
         status: "pending"
       };
       //Crate a new DB entry with the above key and data
-      db.createEntry(newGuid, newData);
+      db.set(newGuid, newData);
 
       //Obtain the promise that getKey should provide
       let validEntry = db.getKey(newGuid);
@@ -90,6 +89,7 @@ describe("DatabaseAdapter.js", () => {
       });
     });
   });
+
   describe(".getAllKeys()", () => {
     it("returns a list of all keys in the db", () => {
       let trueList = redisClient.keys("*", () => {
@@ -97,31 +97,42 @@ describe("DatabaseAdapter.js", () => {
         return assert.becomes(testList, trueList);
       });
     });
+
+    it("returns an empty array when the db is empty", () => {
+      db.removeAllKeys();
+      return assert.eventually.lengthOf(db.getAllKeys(), 0);
+    });
   });
+
   describe(".set()", () => {
     it("Updates a key:value pair with when given a key and a value ", () => {
       let key = guid.newGUID();
-      let data = {"Key": "Value",
-                  "AnotherKey": "AnotherValue!"};
-      let creation = db.createEntry(key, data);
+      let data = {"url": "www.example.com",
+                   "steps": "[{step 1}, {step 2}]",
+                   "status": "pending",
+                   "timestamp": "1486564738"};
+      let creation = db.set(key, data);
       return assert.isFulfilled(creation);
     });
+
     it("rejects with no input", () => {
-      let reject = db.createEntry();
+      let reject = db.set();
       return assert.isRejected(reject);
     });
+
     it("rejects when the data is not valid", () => {
       notValid1 = "Hello!";
       notValid2 = 1234567;
       notValid3 = ["hi", 324];
       notValid4 = {"url": "valid",
                    "steps": "valid",
-                   "NotStatus": "Object needs a 'status' parameter to be valid"};
+                   "NotStatus": "Object needs a 'status' parameter to be valid",
+                   "timestamp": "valid"};
 
-      reject1 = db.createEntry(notValid1);
-      reject2 = db.createEntry(notValid2);
-      reject3 = db.createEntry(notValid3);
-      reject3 = db.createEntry(notValid4);
+      reject1 = db.set(notValid1);
+      reject2 = db.set(notValid2);
+      reject3 = db.set(notValid3);
+      reject3 = db.set(notValid4);
 
       let assertions = [];
       assertions.push(assert.isRejected(reject1));
@@ -131,10 +142,53 @@ describe("DatabaseAdapter.js", () => {
       return Promise.all(assetions);
     });
   });
+
   describe(".removeKey()", () => {
-    it("removes the specified key from the db");
-    it("rejects with no input");
-    it("rejects with a non-valid GUID");
-    it("rejects with a GUID that is not in the db");
+    it("removes the specified key from the db", () => {
+      let newId = guid.create();
+      let data = {
+        "url": "www.example.com",
+        "steps": "Steps go here",
+        "status": "pending",
+        "timestamp": "14875647863"
+      };
+      db.set(newID, data);
+      deletion = db.removeKey(newId);
+      return assert.isFulfilled(deletion);
+    });
+
+    it("rejects with no input", () => {
+      let deletion = db.removeKey();
+      return assert.isRejected(deletion);
+    });
+
+    it("rejects with a GUID that is not in the db", () => {
+      let newId = guid.create();
+      deletion = db.removeKey(newId);
+      return assert.isRejected(deletion);
+    });
+  });
+
+  describe(".removeAllKeys()", () => {
+    it("removes every key/value pair in the database", () => {
+      let newId;
+      let data = {
+        "url": "www.example.com",
+        "steps": "Steps go here",
+        "status": "pending",
+        "timestamp": "14875647863"
+      };
+
+      for (let i = 0; i < 10; i++) {
+        newId = guid.create();
+        db.set(newId, data);
+      }
+
+      let purge = db.removeAllKeys();
+      let assertions = [];
+      assertions.push(assert.eventually.lengthOf(db.getAllKeys(), 0));
+      assertions.push(assert.isFulfilled(purge));
+      return Promise.all(assertions);
+    });
   });
 });
