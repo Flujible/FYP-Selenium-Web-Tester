@@ -1,19 +1,14 @@
 const redisClient = require('redis').createClient(process.env.REDIS_URL);
 const parseString = require('xml2js').parseString;
 
-let getKey = (guid) => {
+let getResult = (guid) => {
   return new Promise(function(resolve, reject) {
     redisClient.hget(guid, 'result', function (err, result) {
-      console.log(":: Redis accessed");
-      if (err) {
-        console.log(":: About to reject");
-        return reject(err);
-      } else {
-        parseString(result, (err, data) => {
-          if (err) console.error(err);
-          return resolve(data);
-        });
-      }
+      if (err) return reject(err);
+      parseString(result, (err, data) => {
+        if (err) console.error(err);
+        return resolve(data);
+      });
     });
   });
 };
@@ -31,7 +26,7 @@ module.exports = {
             redisClient.hget(key, 'timestamp', (err2, timestamp) => {
               console.log({key, status, timestamp});
               resolve(err1 || err2 || { key, status, timestamp });
-            })
+            });
           });
         }));
       });
