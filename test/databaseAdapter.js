@@ -3,7 +3,7 @@ const assert = chai.assert;
 const chaiAsPromised = require("chai-as-promised");
 const guid = require("guid");
 const DatabaseAdapter = require('../lib/DatabaseAdapter');
-const redisClient = require("redis-mock").createClient;
+const redisClient = require("redis-mock").createClient();
 const db = new DatabaseAdapter(redisClient);
 
 /*
@@ -19,10 +19,9 @@ const db = new DatabaseAdapter(redisClient);
   return Promise.all(assertions);
 */
 
-
 chai.use(chaiAsPromised);
 
-describe("DatabaseAdapter.js", () => {
+describe("DatabaseAdapter", () => {
   describe(".getKey(guid)", () => {
     it("rejects with no input", () => {
       blankInput = db.getKey();
