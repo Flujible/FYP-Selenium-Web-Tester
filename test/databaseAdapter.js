@@ -54,9 +54,9 @@ describe("DatabaseAdapter", () => {
 
       //Make assertions on the returned promise
       let assertions = [];
-      assertions.push(assert.isObject(validEntry, /message/));
-      assertions.push(assert.propertyVal(validEntry, "url", "http://www.example.com"));
-      assertions.push(assert.propertyVal(validEntry, "steps", [{
+      assertions.push(assert.eventually.isObject(validEntry));
+      assertions.push(assert.eventually.propertyVal(validEntry, "url", "http://www.example.com"));
+      assertions.push(assert.eventually.propertyVal(validEntry, "steps", [{
         id: "id",
         element: "name",
         action: "click",
@@ -67,11 +67,12 @@ describe("DatabaseAdapter", () => {
         action: "TextEntry",
         value: "Hello",
       }]));
-      assertions.push(assert.propertyVal(validEntry, "status", "pending"));
+      assertions.push(assert.eventually.propertyVal(validEntry, "status", "pending"));
       return Promise.all(assertions);
 
     });
 
+    //This should be using the db adapter, not redisClient
     it("rejects if given a GUID that is not in the db", (done) => {
       let newGuid = guid.create();
 
@@ -83,7 +84,7 @@ describe("DatabaseAdapter", () => {
             }
         });
         redisClient.getKey(newGuid, () => {
-          return expect(promise).to.be.rejected;
+          return assert.isRejected(promise);
         });
       });
     });
@@ -103,9 +104,9 @@ describe("DatabaseAdapter", () => {
     });
   });
 
-  describe(".set()", () => {
-    it("Updates a key:value pair with when given a key and a value ", () => {
-      let key = guid.newGUID();
+  describe(".set(guid, data)", () => {
+    it("Updates a key:value pair with when given a key and a value", () => {
+      let key = guid.create();
       let data = {"url": "www.example.com",
                    "steps": "[{step 1}, {step 2}]",
                    "status": "pending",
@@ -142,7 +143,7 @@ describe("DatabaseAdapter", () => {
     });
   });
 
-  describe(".removeKey()", () => {
+  describe(".removeKey(guid)", () => {
     it("removes the specified key from the db", () => {
       let newId = guid.create();
       let data = {
