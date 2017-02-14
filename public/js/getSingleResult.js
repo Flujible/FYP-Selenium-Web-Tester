@@ -62,6 +62,7 @@ $(document).ready(function(){
       success: function (data) {
         steps = JSON.parse(data.steps);
         $("div#testSteps").append([
+          `<h4>URL: ${data.url}</h4>`,
           '<table id="resultSteps" class="table table-bordered table-striped">',
             '<thead>',
               '<th>ID or Class</th>',

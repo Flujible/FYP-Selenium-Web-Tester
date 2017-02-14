@@ -39,14 +39,16 @@ module.exports = {
   //Show a specific key and its data
   show: (req, res) => {
     let guid = req.params.guid;
-    getResult(guid).then((data) => {
-      redisClient.hget(guid, 'steps', function (err, result) {
-        if (err) return reject(err);
-        if(data) {
-          res.send({guid, data: data.testsuites.testsuite, steps: result});
-        } else {
-          res.send({guid, data: "", steps: result});
-        }
+    getResult(guid).then((result) => {
+      redisClient.hget(guid, 'steps', (err1, testSteps) => {
+        redisClient.hget(guid, 'url', (err2, testUrl) => {
+          if (err1 || err2) return reject(err1 || err2);
+          if(result) {
+            res.send({guid, data: result.testsuites.testsuite, steps: testSteps, url: testUrl});
+          } else {
+            res.send({guid, data: "", steps: testSteps, url: testUrl});
+          }
+        });
       });
     });
   }
