@@ -9,7 +9,7 @@ $(document).ready(function(){
                 '<option>Class</option>',
               '</select>',
             '</td>',
-            '<td><input type="text" class="form-control" name="elementID" placeholder="ID"/></td>',
+            '<td><input type="text" class="form-control" name="elementID" placeholder="Element identifier"/></td>',
             '<td>',
               '<select class="form-control" name="act">',
                 '<option>Click</option>',
