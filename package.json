@@ -12,7 +12,8 @@
     "express": "^4.14.0",
     "guid": "0.0.12",
     "nunjucks": "^2.5.2",
-    "redis": "^2.6.3"
+    "redis": "^2.6.3",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -23,5 +24,21 @@
   },
   "engines": {
     "node": "6.3.1"
-  }
+  },
+  "description": "Final Year Project for my Computer Science Degree at the University of Reading",
+  "main": "mockRedis.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flujible/FYP-Selenium-Web-Tester.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Flujible/FYP-Selenium-Web-Tester/issues"
+  },
+  "homepage": "https://github.com/Flujible/FYP-Selenium-Web-Tester#readme"
 }
