@@ -45,7 +45,7 @@ module.exports = {
         if(data) {
           res.send({guid, data: data.testsuites.testsuite, steps: result});
         } else {
-          res.send({guid, data: "", steps :result})
+          res.send({guid, data: "", steps: result});
         }
       });
     });
