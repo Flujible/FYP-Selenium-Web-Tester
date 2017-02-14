@@ -42,7 +42,11 @@ module.exports = {
     getResult(guid).then((data) => {
       redisClient.hget(guid, 'steps', function (err, result) {
         if (err) return reject(err);
-        res.send({guid, data: data.testsuites.testsuite, steps: result});
+        if(data) {
+          res.send({guid, data: data.testsuites.testsuite, steps: result});
+        } else {
+          res.send({guid, data: "", steps :result})
+        }
       });
     });
   }

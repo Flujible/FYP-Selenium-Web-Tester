@@ -5,14 +5,18 @@ $(document).ready(function(){
       url: "/api/results/" + $('div#testResults').data("testid"),
       dataType: "json",
       success: function (data) {
-        $("div#testResults").append([
-          '<pre>Assertions successful: ', data.data[0].testcase[0].$.assertions - 1, '</pre>',
-          '<pre>Test cases skipped: ', data.data[0].$.skipped, '</pre>',
-          '<pre>Test Failures: ', data.data[0].$.failures, '</pre>',
-          '<pre>System errors: ', data.data[0].$.errors, '</pre>',
-          '<pre>Time to run: ', data.data[0].$.time, ' seconds</pre>',
-          '<pre>Time executed: ', data.data[0].$.timestamp, '</pre>',
-        ].join(''));
+        if(!data.data[0]) {
+          $("div#testResults").append("<pre>Results pending!</pre>");
+        } else {
+          $("div#testResults").append([
+            '<pre>Assertions successful: ', data.data[0].testcase[0].$.assertions - 1, '</pre>',
+            '<pre>Test cases skipped: ', data.data[0].$.skipped, '</pre>',
+            '<pre>Test Failures: ', data.data[0].$.failures, '</pre>',
+            '<pre>System errors: ', data.data[0].$.errors, '</pre>',
+            '<pre>Time to run: ', data.data[0].$.time, ' seconds</pre>',
+            '<pre>Time executed: ', data.data[0].$.timestamp, '</pre>',
+          ].join(''));
+        }
       },
       error: console.error.bind(console)
     });
