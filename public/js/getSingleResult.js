@@ -9,7 +9,7 @@ $(document).ready(function(){
           $("div#testResults").append("<pre>Results pending!</pre>");
         } else {
           $("div#testResults").append([
-            '<pre>Assertions successful: ', data.data[0].testcase[0].$.assertions - 1, '</pre>',
+            '<pre>Assertions attempted: ', data.data[0].testcase[0].$.assertions - 1, '</pre>',
             '<pre>Test cases skipped: ', data.data[0].$.skipped, '</pre>',
             '<pre>Test Failures: ', data.data[0].$.failures, '</pre>',
             '<pre>System errors: ', data.data[0].$.errors, '</pre>',
