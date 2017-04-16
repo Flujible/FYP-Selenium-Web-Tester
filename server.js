@@ -9,6 +9,8 @@ let index = require('./controllers/index');
 let err404 = require('./controllers/err404');
 let test = require('./controllers/test');
 let results = require('./controllers/results');
+let contact = require('./controllers/contact');
+let thanks = require('./controllers/thanks');
 const api = require('./controllers/api');
 
 require('dotenv').load({
@@ -50,6 +52,10 @@ app.post("/test", logRequest, test.createTest);
 
 app.get('/api/results', logRequest, api.index);
 app.get('/api/results/:guid', logRequest, api.show);
+
+app.get('/contact', logRequest, contact.show);
+app.post('/contact', logRequest, contact.submit);
+app.get('/thanks', logRequest, thanks.show);
 
 //For any other page, show 404
 app.use("*", err404.show);

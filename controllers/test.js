@@ -38,7 +38,7 @@ let createTest = (req, res) => {
   let input = req.body;
   let rows = input.idOrClass.length;
 
-  if (rows <= 2) {
+  if (rows < 2) {
     input.act = input.act.replace(/\s+/g, '');
     data.steps.push({
       id: input.idOrClass,
@@ -47,7 +47,7 @@ let createTest = (req, res) => {
       value: input.textEnt,
     });
   } else {
-    for (var i = 0; i < rows; i++) {
+    for (let i = 0; i < rows; i++) {
       input.act[i] = input.act[i].replace(/\s+/g, '');
       data.steps.push({
         id: input.idOrClass[i],

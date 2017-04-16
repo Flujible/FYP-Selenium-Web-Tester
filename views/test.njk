@@ -31,7 +31,7 @@
     <form method="POST" class="form-horzontal">
       <div id="urlID">
         <label for="url">URL:</label>
-        <input type="url" name="url" class="form-control" value="https://">
+        <input type="url" name="url" class="form-control" id="url" value="https://">
       </div>
       <div class="table-responsive">
         <table class="table table-bordered table-striped" id="testMaker">
@@ -45,27 +45,35 @@
             {% for number in [1, 2, 3]%}
             <tr>
               <td>
-                <select class="form-control" name="idOrClass">
+                <select class="form-control" id="idOrClass{{number}}" name="idOrClass">
                   <option>ID</option>
                   <option>Class</option>
                 </select>
               </td>
-              <td><input type="text" class="form-control" name="elementID" placeholder="Element identifier"/></td>
+              <td><input type="text" class="form-control" name="elementID" id="elementID{{number}}" placeholder="Element identifier"/></td>
               <td>
-                <select class="form-control" name="act">
+                <select class="form-control" id="act{{number}}" name="act">
                   <option>Click</option>
                   <option>Text Entry</option>
                   <option>Assert</option>
                 </select></td>
-              <td><input type="text" class="form-control" name="textEnt" placeholder="Enter text here"/></td>
+              <td><input type="text" class="form-control" id="value{{number}}" name="textEnt" placeholder="Enter text here"/></td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
-      <button type="submit" name="button" class="btn btn-default">Submit</button>
-      <button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
-      <button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
+      <div>
+        <button type="submit" name="button" class="btn btn-default">Submit</button>
+        <button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
+        <button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
+      </div>
+      <h3>Form pre-fill buttons</h3>
+      <div>
+        <button id="fill1" name="fill1" class="btn btn-default">Prefill 1</button>
+        <button id="fill2" name="fill2" class="btn btn-default">Prefill 2</button>
+        <button id="fill3" name="fill3" class="btn btn-default">prefill 3</button>
+      </div>
     </form>
   </div>
 {% endblock %}
