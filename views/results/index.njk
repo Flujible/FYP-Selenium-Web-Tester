@@ -1,0 +1,20 @@
+{% extends "default.njk" %}
+{% set page = page or 'results' %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Results</h1>
+  {% if id %}
+  <h3>Your test ID is {{id}}</h3>
+  {% endif %}
+
+  <table class="table table-bordered table-striped" id="indexResults">
+    <tr>
+      <th>Test ID</th>
+      <th>Status</th>
+    </tr>
+  </table></div>
+
+
+{% endblock %}

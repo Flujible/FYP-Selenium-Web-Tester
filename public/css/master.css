@@ -1,21 +1,99 @@
-.navbar-default {
-  background-color: green;
-  color: green;
-  background-image: none;
-}
-
 footer {
   padding: 10px;
   margin-top:20px;
   background-color: #f2f2f2;
 }
 
+body {
+  background-color: #f9fff9;
+}
+
+a {
+  color: #008000;
+}
+
+a:hover {
+  color: #008000;
+}
+
+footer {
+  background-color: #ebfffc;
+  border-top: solid;
+  border-width: 2px;
+  border-color: #999;
+}
+
+ul.nav a:hover {
+  background-color: #f9fff9;
+  color: #333;
+}
+
+.status {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.nav-item a {
+  color: #f5fffa;
+}
+
+.navbar-custom {
+  background-color: #008000;
+}
+
+.navbar-brand, .navbar-brand:hover {
+  color: #f5fffa;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0;
+}
+
+.active {
+  background-color: #f9fff9;
+  color: #333;
+}
+
+.active a {
+  color: #333;
+}
+
+.jumbotron {
+  background-color: #ebfffc;
+  border-bottom: solid;
+  border-width: 2px;
+  border-color: #999;
+}
+
+.img-circle {
+  width: 100%;
+  max-width: 160px;
+}
+
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+   background-color: #eff7f9;
+ }
+
+ .table-striped > tbody > tr:nth-child(odd) > td,
+ .table-striped > tbody > tr:nth-child(odd) > th {
+   background-color: #f9fff9;
+ }
+
+.side-by-side {
+  max-width: 500px;
+  max-height: 500px;
+}
+
 #footer-nav {
   list-style-type: none;
+  text-align: center;
+  text-decoration: underline;
+  padding-left: 0px;
 }
 
 #content {
-  padding-top: 50px
+  padding-top: 50px;
 }
 
 #urlID {

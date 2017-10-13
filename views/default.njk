@@ -6,19 +6,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/master.css">
+		<link rel="stylesheet" href="/css/spinner.css">
 		<title>{{ page | capitalize }} | Selenium Web Tester</title>
 	</head>
 	<body>
 
 		{# Navigation bar with links to pages and sign up/log in #}
 		{# I think this needs to go in the default.njk file #}
-		<div class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar navbar-custom navbar-fixed-top">
 			<div class="navbar-header">
 				<a href="/" class="navbar-brand">Selenium Web Tester</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class='{{ "active" if page === "home" }}'><a href="/">Home</a></li>
-				<li class='{{ "active" if page === "test" }}'><a href="/test">Test</a></li>
+				<li class='{{ "active" if page === "home" else "nav-item"}}'><a href="/">Home</a></li>
+				<li class='{{ "active" if page === "test" else "nav-item"}}'><a href="/test">Test</a></li>
+				<li class='{{ "active" if page === "results" else "nav-item"}}'><a href="/results">Results</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
@@ -32,22 +34,22 @@
     </div>
 
   <footer>
-      <div class="col-xs-12">
         <ul id="footer-nav">
           <li><a href="/" class="text-muted">Home</a></li>
           <li><a href="/test" class="text-muted">Test</a></li>
         </ul>
-      </div>
-      <p class="text-muted text-center">
-        Selenium Web Tester &copy George Bryant 2016
-      </p>
+				<p class="text-muted text-center">Selenium Web Tester &copy; George Bryant 2016</p>
   </footer>
 
 	{# jQuery (necessary for Bootstrap's JavaScript plugins) #}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	{# Include all compiled plugins (below), or include individual files as needed #}
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/script.js"></script>
+	<script type="text/javascript" src="/js/testMakerAddRow.js"></script>
+	<script type="text/javascript" src="/js/getAllResults.js"></script>
+	<script type="text/javascript" src="/js/getSingleResult.js"></script>
+  <script type="text/javascript" src="/js/formFill.js"></script>
+
 </body>
 
 </html>

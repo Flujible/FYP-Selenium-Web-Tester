@@ -5,77 +5,75 @@
 
 {% block content %}
 <div class="container">
-	<h1>Hello
-		{% if name %}
-			{{name}}
-		{% else %}
-			you
-		{% endif %}!
-	</h1>
-
-	{# Table with text entry #}
-	<div class="container">
-		<form method="POST" class="form-horzontal">
-			<div id="urlID">
-				<label for="url">URL:</label>
-				<input type="url" name="url" class="form-control">
-			</div>
-			<div class="table-responsive">
-				<table class="table table-bordered table-striped" id="testMaker">
-					<thead>
-						<th>ID or Class</th>
-						<th>Element Identifier</th>
-						<th>Action</th>
-						<th>Value</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<select class="form-control" name="idOrClass">
-									<option>Class</option>
-									<option>ID</option>
-								</select>
-							</td>
-							<td><input type="text" class="form-control" name="elementID" placeholder="ID"/></td>
-							<td>
-								<select class="form-control" name="act">
-									<option>Click</option>
-									<option>Text Entry</option>
-									<option>Assert</option>
-								</select></td>
-							<td><input type="text" class="form-control" name="textEnt" placeholder="Enter text here"/></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<button type="submit" name="button" class="btn btn-default">Submit</button>
-			<button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
-			<button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
-		</form>
-	</div>
-
-<br>
-<br>
-<br>
-<br>
-	{% for containerType in ['container', 'container-fluid'] %}
-	<div class="{{ containerType }}">
-		<div class="col-xs-4">
-			{% for i in range(1, 10) %}
-				<div class="row">
-					<p>{{ i }}</p>
-				</div>
-
-				{% if i % 3 == 0 %}
-				</div>
-
-				{% if not loop.last %}
-					<div class="col-xs-4">
-					{% endif %}
-				{% endif %}
-			{% endfor %}
-		</div>
-	{% endfor %}
-
-</div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Make a test script</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>How to create a test</h3>
+      <p>
+        Creating a test script with the Selenium Web Tester is very simple. Firstly, enter the URL of the site you want to test in the box labled 'URL', and then fill in each row of the table below. Each row in this table represents an action that will be performed in the test, and each row is made from four columns:
+        <ul>
+          <li><b>ID or Class</b> - Selenium tests require the user to identify an element in their web page for an action to be performed on. In this box, you should select if you want to identify that element by its CSS class, or its CSS ID</li>
+          <li><b>Element Identifier</b> - In here, you should enter the name of the ID or class that your element is using so that selenium can find which place in the page to perform your actions on.</li>
+          <li><b>Action</b> - You can pick from three basic actions in this box. 'Click' simulates a user clicking on the element you have picked, 'Text Entry' simulates a user entering text into an element, and 'Assert' checks that the specified text exists in your chosen element </li>
+          <li><b>Value</b> - When the 'Text Entry' action is selected, enter the text you would like the test to perform in this box. When 'Assert' is selected, enter the text that you expect to be present in your chosen element into this box</li>
+        </ul>
+        If you want to add more actions to your test, or take some actions away, use the 'Add another action', and 'Remove last action' buttons underneath the form.
+        When your test script is ready, hit 'Submit' to send your test off, and wait a few seconds for the results to come back!
+        CHEAT:  === Enter
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <form method="POST" class="form-horzontal">
+      <div id="urlID">
+        <label for="url">URL:</label>
+        <input type="url" name="url" class="form-control" id="url" value="https://">
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="testMaker">
+          <thead>
+            <th>ID or Class</th>
+            <th>Element Identifier</th>
+            <th>Action</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            {% for number in [1, 2, 3]%}
+            <tr>
+              <td>
+                <select class="form-control" id="idOrClass{{number}}" name="idOrClass">
+                  <option>ID</option>
+                  <option>Class</option>
+                </select>
+              </td>
+              <td><input type="text" class="form-control" name="elementID" id="elementID{{number}}" placeholder="Element identifier"/></td>
+              <td>
+                <select class="form-control" id="act{{number}}" name="act">
+                  <option>Click</option>
+                  <option>Text Entry</option>
+                  <option>Assert</option>
+                </select></td>
+              <td><input type="text" class="form-control" id="value{{number}}" name="textEnt" placeholder="Enter text here"/></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button type="submit" name="button" class="btn btn-default">Submit</button>
+        <button id="addRowBtn" name="addRow" class="btn btn-default">Add another action</button>
+        <button id="dltRowBtn" name="dltRow" class="btn btn-default">Remove last action</button>
+      </div>
+      <h3>Form pre-fill buttons</h3>
+      <div>
+        <button id="fill1" name="fill1" class="btn btn-default">Prefill 1</button>
+        <button id="fill2" name="fill2" class="btn btn-default">Prefill 2</button>
+        <button id="fill3" name="fill3" class="btn btn-default">prefill 3</button>
+      </div>
+    </form>
+  </div>
 {% endblock %}
